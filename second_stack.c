@@ -134,6 +134,7 @@ int push_a(Node *head_a, Node *head_b)
     if (!node)
         return (0);
     push(head_a, node);
+    ft_putstr_fd("pa\n", 1);
     return (1);
 }
 
@@ -145,6 +146,7 @@ int push_b(Node* head_a,Node *head_b){
     if (!node)
         return (0);
     push(head_b, node);
+    ft_putstr_fd("pb\n",1);
     return (1);
 }
 
@@ -161,6 +163,7 @@ void rotate_a(Node *head_a, Node *head_b) /// optimized
     curr = ft_lstlast(head_a->stack); // O(N);
     curr->next =node;
     head_a->len++;  
+    ft_putstr_fd("ra\n", 1);
 
 }
 
@@ -257,7 +260,7 @@ void print_stack(Node *head){
     t_list *curr = head->stack;
     while(curr)
     {
-        printf("the node %d\n:", curr->content);
+        printf("the node :%d\n", curr->content);
         curr = curr->next;
     }
 
@@ -303,40 +306,16 @@ void selection_sort(Node *head_a, Node *head_b)
     //while(disorder_metric(head) != 0.0f)
    
     t_list *curr =NULL;
-    t_list *curr2=NULL;
     int n =0;
     int peekval = 0;
-
-   /* curr = head_a->stack;
-     if(!curr)
-        return ;
-    n = curr->content ;
-    while(curr) // o(N)
-    {
-        if(n > curr->content)
-            n = curr->content;
-        curr = curr->next;
-    }
-    peek(head_a,&peekval); // O(1);
-    while(peekval != n)  // O(N)
-    { 
-        rotate_a(head_a, head_b); // O(N)
-        peek(head_a, &peekval); //O(1)
-        //printf("teh peek val %d\n", peekval);
-    }
-   push_b(head_a, head_b);*/
-   //selection_sort(head_a,head_b); // recursion could not risk stack overflow  
   
-
-   n = head_a->len;
-  
-   while(head_a->len != 1)
+   while(head_a->len > 1) // O(N)
    {
      curr = head_a->stack;
         n = curr->content ;
-    while(curr) // o(N)
+    while(curr) // o(N) /// i shoudl create a helper function that return the smalest khorza
     {
-        if(n > curr->content)
+        if(n > (int)curr->content)
             n = curr->content;
         curr = curr->next;
     }
@@ -354,6 +333,5 @@ void selection_sort(Node *head_a, Node *head_b)
    {
     push_a(head_a,head_b);
    }
-
     
 }
