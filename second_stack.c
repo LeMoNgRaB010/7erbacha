@@ -10,7 +10,7 @@ t_list *stack_init(int argc, char **argv, int *len);
 
 t_list *pop(Node *head);
 int peek(Node *head, int *content);
-int swap_a(Node *head);
+void swap_a(Node *head);
 void push(Node *head, t_list *node);
 void rotate_a(Node *head_a, Node *head_b);
 void rotate_b(Node *head_a, Node *head_b);
@@ -18,6 +18,7 @@ int push_b(Node* head_a,Node *head_b);
 void print_stack(Node *head); /// debugggg
 void reverse_rotate_a(Node *head_a, Node *head_b);
 float disorder_metric(Node *head);
+void selection_sort(Node *head_a, Node *head_b);
 
 int main(int argc, char **argv)
 {
@@ -33,11 +34,16 @@ int main(int argc, char **argv)
  printf("before\n");
     print_stack(head_a);
 //everse_rotate_a(head_a,head_b);
-printf("after\n");
+printf("after rotation\n");
+//rotate_a(head_a, head_b);
+ //print_stack(head_a); 
 //print_stack(head_a);
-printf("the disorder metric %f", disorder_metric(head_a));
-   //peek(head_a,&n);
-    //printf("teh fisrt after rotate a node : %d", n);
+//printf("the disorder metric %f", disorder_metric(head_a));
+   
+selection_sort(head_a, head_b);
+ printf("after selection sort\n");
+    print_stack(head_a);
+//printf("the disorder metric %f", disorder_metric(head_a));
     return 0;
 }
 
@@ -95,12 +101,12 @@ void push(Node *head, t_list *node)
 void swap_a(Node *head)
 {
     if ( !head ||  head->len < 2)
-        return(0);
+        return;
     t_list *tmp = pop(head);
     t_list *tmp2 =pop(head);
     push(head,tmp);
     push(head,tmp2);
-    return 1;
+   // return 1;
 
 }
 int swap_b(Node *head)
@@ -142,7 +148,7 @@ int push_b(Node* head_a,Node *head_b){
     return (1);
 }
 
-void rotate_a(Node *head_a, Node *head_b)
+void rotate_a(Node *head_a, Node *head_b) /// optimized
 {
     t_list *node ;
     t_list *curr;
@@ -151,21 +157,10 @@ void rotate_a(Node *head_a, Node *head_b)
 
     node = pop(head_a);
     n = head_a->len;
-    while(n != 0)
-    {
-     if(push_b(head_a, head_b))
-        printf("pushed b len : %d\n ", n);
-    n2++;
-     n--;        
-    }
-    push(head_a, node);
-    //n = head_b->len;
-    while(n2 != 0)
-    {
-     if(push_a(head_a, head_b))
-        printf("pushed b len : %d\n ", n);
-     n2--;        
-    }
+    node->next = NULL; 
+    curr = ft_lstlast(head_a->stack); // O(N);
+    curr->next =node;
+    head_a->len++;  
 
 }
 
@@ -303,30 +298,62 @@ float disorder_metric(Node *head)
 }
 
 
-void bubble_sort(Node *head_a)
+void selection_sort(Node *head_a, Node *head_b)
 {
     //while(disorder_metric(head) != 0.0f)
    
     t_list *curr =NULL;
-    t_list *curr2-NULL;
+    t_list *curr2=NULL;
+    int n =0;
+    int peekval = 0;
 
-    curr = head->stack;
-    while(curr)
+   /* curr = head_a->stack;
+     if(!curr)
+        return ;
+    n = curr->content ;
+    while(curr) // o(N)
     {
-        curr2=curr->next;
-        while(curr2){
-            if(curr->content > curr2->content)
-            {
-
-            //swap_a(head);
-            }
-
-            curr2=curr2->next;
-        }
-
+        if(n > curr->content)
+            n = curr->content;
         curr = curr->next;
     }
+    peek(head_a,&peekval); // O(1);
+    while(peekval != n)  // O(N)
+    { 
+        rotate_a(head_a, head_b); // O(N)
+        peek(head_a, &peekval); //O(1)
+        //printf("teh peek val %d\n", peekval);
+    }
+   push_b(head_a, head_b);*/
+   //selection_sort(head_a,head_b); // recursion could not risk stack overflow  
+  
 
+   n = head_a->len;
+  
+   while(head_a->len != 1)
+   {
+     curr = head_a->stack;
+        n = curr->content ;
+    while(curr) // o(N)
+    {
+        if(n > curr->content)
+            n = curr->content;
+        curr = curr->next;
+    }
+       peek(head_a,&peekval); // O(1);
+    while(peekval != n)  // O(N)
+    { 
+        rotate_a(head_a, head_b); // O(N)
+        peek(head_a, &peekval); //O(1)
+        //printf("teh peek val %d\n", peekval);
+    }
+     push_b(head_a, head_b);
+   }
+   int n2 = head_b->len;
+   while(n2--) //O(N)
+   {
+    push_a(head_a,head_b);
+   }
 
-
+    
 }
