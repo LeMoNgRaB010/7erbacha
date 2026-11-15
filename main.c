@@ -6,7 +6,7 @@
 /*   By: sech-cha <sech-cha@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 16:57:22 by sech-cha          #+#    #+#             */
-/*   Updated: 2026/11/14 18:44:40 by sech-cha         ###   ########.fr       */
+/*   Updated: 2026/11/15 11:39:05 by sech-cha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ t_data	*ft_create_empty_stack(void)
 	b->size_stack = 0;
 	return (b);
 }
+
 
 int	main(int ac, char **av)
 {
