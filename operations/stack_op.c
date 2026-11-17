@@ -30,6 +30,8 @@ int peek(Node *head, int *content)
 
 }
 
+
+
 t_list *pop(Node *head){
     t_list *node;
     
@@ -57,7 +59,7 @@ void print_stack(Node *head){ // for debugg purpuses
     t_list *curr = head->stack;
     while(curr)
     {
-      //  printf("the node :%d\n", curr->content);
+        printf("the node index :%d  node content %d\n", curr->index,curr->content);
         curr = curr->next;
     }
 

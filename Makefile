@@ -1,23 +1,22 @@
-NAME      = push_swap
+NAME      = push_swap.a
 CC        = cc
-# CFLAGS  = -Wall -Wextra -Werror
-CFLAGS    =
+#CFLAGS    = -Wall -Wextra -Werror
 
 LIBFT_DIR = libft
 LIBFT     = $(LIBFT_DIR)/libft.a
 
-SRC = main.c \
-      algorithms/simple_algorithm.c \
+SRC = algorithms/simple_algorithm.c \
       operations/algo_op.c \
       operations/algo_rotations.c \
-      operations/stack_op.c
+      operations/stack_op.c \
+	  algorithms/chunk_based_sort.c
 
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJ) $(LIBFT)
-	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME)
+	ar rcs $(NAME) $(OBJ)
 
 $(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR)
