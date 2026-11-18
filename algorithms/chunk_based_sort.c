@@ -42,47 +42,126 @@ return head->stack;
 
 }
 
-
- void bucket_sort(Node *head_a, Node *head_b)
+int pos_top(Node *head, int idx)
 {
+    int j;
     t_list *curr;
-    int peekval;
-    // 
-    // 
-   // curr = head_a->stack;
-   printf("the the sqauer root len %d\n", ft_sqrt(head_a->len));
-     int i =0;
-     int jj = ft_sqrt(head_a->len);
-     int j = jj;
-     int n =  head_a->len;
-    while(j){
-    
-    //i = 0; 
-    int x =0;
-    printf("the jj wich is the val of squar n %d\n", jj);
-    while(i < (n/j))
+
+    j = 0;
+    curr = head->stack;
+    while (curr)
     {
-        x = n /j;
-        printf("teh cunk range n / j %d\n", x);
-           curr = second_peek(head_a) ;
-        if(curr->index < n / j)
+        
+    if(curr->index < idx )
+        break;
+    j++;
+     curr= curr->next;
+    }
+ return (j);
+}
+
+int pos_bottom(Node *head, int idx)
+{
+    int j;
+    int cost;
+    t_list *curr;
+
+    j = 0;
+    cost = 0;
+    curr = head->stack;
+    while(curr)
+    {
+        if (curr->index < idx )
+            cost = j;
+        j++;
+        curr = curr->next;
+    }
+    return (j - cost);
+}
+
+int exact_pos(Node *head, int idx)
+{
+    int i;
+    t_list *curr;
+
+    i =0;
+    curr = head->stack;
+    while(curr)
+    {
+        if(curr->index == idx )
+            break;
+        i++;
+        curr = curr->next;
+    }
+
+    return (i);
+}
+
+
+void deviseinto_chunks(Node *head_a, Node *head_b)
+{ 
+    int chunk_s;
+    int j; // number of chunks start from 1
+    t_list *curr;
+    int i;
+
+    chunk_s = ft_sqrt(head_a->len);
+    j = 1;
+    i = 0; /// number of nodes pushed intehre chunks 
+    curr = head_a->stack;
+    while(head_a->len)
+    {
+        while(i < (j * chunk_s) && head_a->len)
         {
-         push_b(head_a, head_b);
-          i++;
-        }else{
+            curr = second_peek(head_a);
+            if(curr->index < j * chunk_s)
+            {
+                
+                push_b(head_a, head_b);
+                i++;
+            }else
+            {
+            if(pos_top(head_a, j*chunk_s) <= pos_bottom(head_a, j*chunk_s))
+                rotate_a(head_a, head_b);
+            else
+                 reverse_rotate_a(head_a, head_b);
+            }
 
-            reverse_rotate_a(head_a, head_b);
+
         }
-
-
+ 
+     j++;
     }
-      j--;
-    }
-   /*while(head_b->len)
+}
+
+void bucket_sort(Node *head_a, Node *head_b )
+{
+   int n;
+    t_list *curr;
+    int pos;
+    
+    //int j = head_b->len / ft_sqrt(head_b->len);
+deviseinto_chunks(head_a,head_b);
+    n = head_b->len-1;   
+    while(head_b->len)
     {
-      
+        pos = exact_pos(head_b, n);
+        curr = second_peek(head_b);
+      if(curr->index == n)
+      {
         push_a(head_a, head_b);
+        n--;
+      }else{
+   
+        if(pos <= head_b->len-pos)
+         rotate_b(head_a,head_b);
+        else
+        reverse_rotate_b(head_a, head_b);
+      }
+    }
 
-    }*/
+    
+
+
 
 }

@@ -30,7 +30,7 @@ void rotate_b(Node *head_a, Node *head_b) /// optimized
     curr = ft_lstlast(head_b->stack); // O(N); 
    curr->next =node;
     head_b->len++;  
-    ft_putstr_fd("ra\n", 1);
+    ft_putstr_fd("rb\n", 1);
 
 }
 
@@ -60,6 +60,7 @@ void reverse_rotate_a(Node *head_a, Node *head_b){
         n2--;
     }
     push(head_a,node);
+        ft_putstr_fd("rra\n", 1);
 }
 
 void reverse_rotate_b(Node *head_a, Node *head_b){

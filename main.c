@@ -127,10 +127,12 @@ assign_index(head_a);
 //     curr = curr->next;
 // }
 //selection_sort(head_a, head_b);
-head_b->len = 0;
-bucket_sort(head_a, head_b);
+//head_b->len = 0;
+//bucket_sort(head_a, head_b);
+//deviseinto_chunks(head_a, head_b);
+bucket_sort(head_a, head_b );
  printf("after  buckket sort\n");
-    print_stack(head_b);
+    print_stack(head_a);
 //printf("the disorder metric %f", disorder_metric(head_a));
     return 0;
 }

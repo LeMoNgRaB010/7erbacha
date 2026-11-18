@@ -1,6 +1,7 @@
 #ifndef PUSHSWAP_H
 #define PUSHSWAP_H
 #include "libft/libft.h" 
+#include<stdio.h>
 typedef struct Node{
     int len;
     t_list *stack;
@@ -34,6 +35,8 @@ void reverse_rotate_rrr(Node *head_a, Node *head_b); //balek norminette
 // simple algo
 void selection_sort(Node *head_a, Node *head_b);
 
-
-
+void assign_index(Node *head_a);
+ //void bucket_sort(Node *head_a, Node *head_b);
+void deviseinto_chunks(Node *head_a, Node *head_b);
+void bucket_sort(Node *head_a, Node *head_b );
 #endif
