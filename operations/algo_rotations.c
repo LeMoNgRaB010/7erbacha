@@ -85,6 +85,7 @@ void reverse_rotate_b(Node *head_a, Node *head_b){
         n2--;
     }
     push(head_b,node);
+    ft_putstr_fd("rra\n", 1);
 }
 /// norminette at7wini
 void reverse_rotate_rrr(Node *head_a, Node *head_b){

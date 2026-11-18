@@ -103,8 +103,8 @@ int main(int argc, char **argv)
    int n =0;
    //peek(head_a,&n);
     //printf("teh fisrt node : %d", n);
- printf("before\n");
-    print_stack(head_a);
+ //printf("before\n");
+   // print_stack(head_a);
 //everse_rotate_a(head_a,head_b);
 
 //rotate_a(head_a, head_b);
@@ -116,7 +116,7 @@ int main(int argc, char **argv)
 //  printf("after selection sort\n");
 //     print_stack(head_a);
 
-assign_index(head_a);
+//assign_index(head_a);
 
 //  t_list *curr;
 
@@ -130,9 +130,26 @@ assign_index(head_a);
 //head_b->len = 0;
 //bucket_sort(head_a, head_b);
 //deviseinto_chunks(head_a, head_b);
-bucket_sort(head_a, head_b );
- printf("after  buckket sort\n");
-    print_stack(head_a);
+//bucket_sort(head_a, head_b );
+//printf("the disorder metric %f", disorder_metric(head_a));
+//printf("after  buckket sort\n");
+     
+//print_stack(head_a);
+assign_index(head_a);
+//  t_list *curr;
+
+//  curr = head_a->stack;
+// while(curr){
+
+//    printf("the number %d index->%d\n", curr->content, curr->index);
+//     curr = curr->next;
+// }
+//printf("before \n");
+//print_stack(head_a);
+radix_sort(head_a,head_b, 0);
+
+//printf("teh b satck \n");
+//print_stack(head_a);
 //printf("the disorder metric %f", disorder_metric(head_a));
     return 0;
 }

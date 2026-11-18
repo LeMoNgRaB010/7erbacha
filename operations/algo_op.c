@@ -8,6 +8,7 @@ void swap_a(Node *head)
     t_list *tmp2 =pop(head);
     push(head,tmp);
     push(head,tmp2);
+    // ft_putstr_fd("[bench]",2);
   // ft_putstr_fd("sa\n", 1);
 
 }

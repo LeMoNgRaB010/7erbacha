@@ -105,6 +105,7 @@ void deviseinto_chunks(Node *head_a, Node *head_b)
     t_list *curr;
     int i;
 
+    assign_index(head_a);
     chunk_s = ft_sqrt(head_a->len);
     j = 1;
     i = 0; /// number of nodes pushed intehre chunks 

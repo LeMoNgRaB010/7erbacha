@@ -9,7 +9,8 @@ SRC = algorithms/simple_algorithm.c \
       operations/algo_op.c \
       operations/algo_rotations.c \
       operations/stack_op.c \
-	  algorithms/chunk_based_sort.c
+	  algorithms/chunk_based_sort.c \
+	  algorithms/radix_sort.c
 
 OBJ = $(SRC:.c=.o)
 

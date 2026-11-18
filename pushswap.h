@@ -39,4 +39,6 @@ void assign_index(Node *head_a);
  //void bucket_sort(Node *head_a, Node *head_b);
 void deviseinto_chunks(Node *head_a, Node *head_b);
 void bucket_sort(Node *head_a, Node *head_b );
+t_list *second_peek(Node *head);
+void radix_sort(Node *head_a, Node *head_b,int shift);
 #endif
